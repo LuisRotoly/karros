@@ -1,0 +1,42 @@
+.car-container {
+  width: 15%;
+  height: 380px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
+}
+
+.car-image-size {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 200px;
+  border: 1px solid red;
+}
+
+.title {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 26px;
+}
+
+.subtitle {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: gray;
+}
+
+.amount {
+  margin: 10px;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.info {
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  color: gray;
+}

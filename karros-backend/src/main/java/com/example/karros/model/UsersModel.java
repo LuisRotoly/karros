@@ -6,12 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="users")
+@Table(name="user")
 public class UsersModel {
 
     @Id
@@ -28,6 +30,13 @@ public class UsersModel {
     @Column(name="password")
     private String password;
 
+    @Column(name="created_at")
+    private LocalDateTime createdAt;
+
     @Column(name="token")
     private String token;
+
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private RoleModel roleModel;
 }

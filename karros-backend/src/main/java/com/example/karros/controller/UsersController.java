@@ -1,5 +1,6 @@
 package com.example.karros.controller;
 
+import com.example.karros.bodyRequestInput.users.CreateUserRequest;
 import com.example.karros.bodyRequestInput.users.LoginRequest;
 import com.example.karros.model.UsersModel;
 import com.example.karros.service.UsersService;
@@ -15,10 +16,11 @@ public class UsersController {
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public @ResponseBody UsersModel login(@RequestBody LoginRequest loginRequest){
-        UsersModel usersModel = usersService.login(loginRequest);
-        //if(usersModel != null) {
-            return usersModel;
-        //}
-        //throw new ApiRequestException("E-mail e senha não encontrados!");
+        return usersService.login(loginRequest);
+    }
+
+    @RequestMapping(value="/createUser", method = RequestMethod.POST)
+    public @ResponseBody UsersModel createUser(@RequestBody CreateUserRequest createUserRequest){
+        return usersService.createUser(createUserRequest);
     }
 }
