@@ -1,5 +1,6 @@
 package com.example.karros.controller;
 
+import com.example.karros.DTO.UserDTO;
 import com.example.karros.bodyRequestInput.users.CreateUserRequest;
 import com.example.karros.bodyRequestInput.users.LoginRequest;
 import com.example.karros.model.UsersModel;
@@ -15,7 +16,7 @@ public class UsersController {
     private UsersService usersService;
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
-    public @ResponseBody UsersModel login(@RequestBody LoginRequest loginRequest){
+    public @ResponseBody UserDTO login(@RequestBody LoginRequest loginRequest){
         return usersService.login(loginRequest);
     }
 
