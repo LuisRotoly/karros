@@ -4,6 +4,7 @@
   text-align: center;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 15px;
+  max-width: 100%;
 }
 
 .credentials {
@@ -27,6 +28,10 @@
   border-right: 1px solid rgb(0, 0, 0, 0.2);
 }
 
+.image-cursor {
+  cursor: pointer;
+}
+
 .button {
   background-color: red;
   border-radius: 10px;
@@ -35,8 +40,8 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
-  height: 35px;
-  padding: 10px 16px 10px 16px;
+  height: 40px;
+  padding: 8px 15px 10px 15px;
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
 }
@@ -49,7 +54,7 @@
 .icon {
   padding-right: 10px;
   color: red;
-  transform: scale(1.4);
+  transform: scale(2);
 }
 
 .user-name {

@@ -31,6 +31,7 @@ public class CarService {
         carModel.setKilometers(addCarRequest.getKilometers());
         carModel.setBase_64_image(addCarRequest.getImage());
         carModel.setCreatedAt(LocalDateTime.now());
+        carModel.setIsDeleted(false);
         try {
             carRepository.save(carModel);
         }catch (Exception e){
@@ -47,9 +48,8 @@ public class CarService {
     }
 
     public void deleteCar(Long id) {
-        System.out.println(id);
         try {
-            carRepository.deleteById(Math.toIntExact(id));
+            carRepository.setDeletedFlagTrue(id, LocalDateTime.now());
         }catch (Exception e){
             throw new ApiRequestException("Erro ao deletar carro!");
         }

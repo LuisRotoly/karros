@@ -34,10 +34,21 @@ function Topbar() {
     navigate("/carsManage");
   }
 
+  function gotoHome() {
+    navigate("/");
+  }
+
   return (
     <div className="container">
       <div className="image">
-        <img width="30%" height="100%" src={logo} alt="Logo Karros" />
+        <img
+          className="image-cursor"
+          onClick={gotoHome}
+          width="30%"
+          height="100%"
+          src={logo}
+          alt="Logo Karros"
+        />
       </div>
       <div className="credentials">
         {isAuth() ? (

@@ -32,5 +32,7 @@ CREATE TABLE car (
   `year` varchar(9) NOT NULL,
   base_64_image MEDIUMTEXT,
   created_at datetime NOT NULL,
-  updated_at datetime
+  updated_at datetime,
+  is_deleted boolean NOT NULL,
+  deleted_at datetime
 );

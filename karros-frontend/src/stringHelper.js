@@ -4,7 +4,7 @@ function validateRegexEmail(email) {
 }
 
 function isEmpty(string) {
-  return string == null || string.trim().length === 0;
+  return string === null || string.length === 0;
 }
 
 function getAmountFormat(amount) {
