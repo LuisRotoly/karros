@@ -12,6 +12,8 @@ import DeleteModal from "../../components/modal/DeleteModal";
 function CarPage() {
   const navigate = useNavigate();
   const [carList, setCarList] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [carId, setCarId] = useState("");
 
   useEffect(() => {
     getCarList();
@@ -23,9 +25,12 @@ function CarPage() {
       .catch((e) => console.log(e));
   }
 
-  function deleteCar(carId) {
+  function deleteCar() {
     deleteCarRequest(carId)
-      .then((_) => getCarList())
+      .then((_) => {
+        closeModal();
+        getCarList();
+      })
       .catch((e) => console.log(e));
   }
 
@@ -37,82 +42,106 @@ function CarPage() {
     navigate("/carsManage/createCar");
   }
 
+  function openDeleteModal(carId) {
+    setCarId(carId);
+    showModal();
+  }
+
+  function showModal() {
+    setModal(true);
+  }
+
+  function closeModal() {
+    setModal(false);
+  }
+
   return (
     <div>
-      <p>Selecione um carro ou crie um novo anúncio</p>
-      <table>
-        <thead>
-          <tr>
-            <td>
-              <p>Nome</p>
-            </td>
-            <td>
-              <p>Marca</p>
-            </td>
-            <td>
-              <p>Modelo</p>
-            </td>
-            <td>
-              <p>Ano</p>
-            </td>
-            <td>
-              <p>Quilometragem</p>
-            </td>
-            <td>
-              <p>Preço</p>
-            </td>
-            <td>
-              <p>Editar</p>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          {carList.map((car) => {
-            return (
-              <tr key={car.id}>
-                <td>
-                  <p>{car.name}</p>
-                </td>
-                <td>
-                  <p>{car.brand}</p>
-                </td>
-                <td>
-                  <p>{car.model}</p>
-                </td>
-                <td>
-                  <p>{car.year}</p>
-                </td>
-                <td>
-                  <p>{car.kilometers}</p>
-                </td>
-                <td>
-                  <p>{getAmountFormat(car.amount)}</p>
-                </td>
-                <td>
-                  <EditIcon
-                    onClick={() => gotoEditPage(car.id)}
-                    className="edit-icon-color"
-                  />
-                </td>
-                <td>
-                  <DeleteIcon
-                    onClick={() => deleteCar(car.id)}
-                    className="delete-icon-color"
-                  />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      {/*<DeleteModal
-        remove={this.handleDelete}
-        show={this.state.modal}
-        close={this.closeModal}
-        objectName={this.state.readingName}
-        title="material educativo"
-        />*/}
-      <button onClick={gotoCreatePage}>Criar novo anúncio</button>
+      {carList.length > 0 ? (
+        <div>
+          <p className="align-center p-title">
+            Selecione um carro ou crie um novo anúncio
+          </p>
+          <div className="align-center">
+            <table>
+              <thead>
+                <tr>
+                  <td>
+                    <p className="table-header">Nome</p>
+                  </td>
+                  <td>
+                    <p className="table-header">Marca</p>
+                  </td>
+                  <td>
+                    <p className="table-header">Modelo</p>
+                  </td>
+                  <td>
+                    <p className="table-header">Ano</p>
+                  </td>
+                  <td>
+                    <p className="table-header">Quilometragem</p>
+                  </td>
+                  <td>
+                    <p className="table-header">Preço</p>
+                  </td>
+                  <td>
+                    <p className="table-header">Editar</p>
+                  </td>
+                  <td>
+                    <p className="table-header">Deletar</p>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                {carList.map((car) => {
+                  return (
+                    <tr key={car.id}>
+                      <td>
+                        <p>{car.name}</p>
+                      </td>
+                      <td>
+                        <p>{car.brand}</p>
+                      </td>
+                      <td>
+                        <p>{car.model}</p>
+                      </td>
+                      <td>
+                        <p>{car.year}</p>
+                      </td>
+                      <td>
+                        <p>{car.kilometers}</p>
+                      </td>
+                      <td>
+                        <p>{getAmountFormat(car.amount)}</p>
+                      </td>
+                      <td>
+                        <EditIcon
+                          onClick={() => gotoEditPage(car.id)}
+                          className="edit-icon"
+                        />
+                      </td>
+                      <td>
+                        <DeleteIcon
+                          onClick={() => openDeleteModal(car.id)}
+                          className="delete-icon"
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ) : (
+        <p className="align-center">Sem dados para mostrar</p>
+      )}
+      <div className="align-center">
+        <button className="button-layout" onClick={gotoCreatePage}>
+          Criar novo anúncio
+        </button>
+      </div>
+      {<DeleteModal remove={deleteCar} show={modal} close={closeModal} />}
     </div>
   );
 }

@@ -56,18 +56,18 @@ function EditCarPage() {
 
   function isValidEntrances() {
     return (
-      !isEmpty(name) ||
-      !isEmpty(brand) ||
-      !isEmpty(model) ||
-      !isEmpty(year) ||
-      !isEmpty(kilometers) ||
-      !isEmpty(amount) ||
+      !isEmpty(name) &&
+      !isEmpty(brand) &&
+      !isEmpty(model) &&
+      !isEmpty(year) &&
+      !isEmpty(kilometers) &&
+      !isEmpty(amount) &&
       !isEmpty(image)
     );
   }
 
   function editCar() {
-    if (isValidEntrances) {
+    if (isValidEntrances()) {
       editCarRequest(
         pathname.id,
         name,
@@ -104,62 +104,67 @@ function EditCarPage() {
   }, [pathname.id]);
 
   return (
-    <div>
+    <div className="align-center">
       {successMessage !== "" ? (
         <div>
           <p>{successMessage}</p>
-          <button onClick={goBackPage}>Voltar</button>
+          <div className="align-center">
+            <button className="button-layout" onClick={goBackPage}>
+              Voltar
+            </button>
+          </div>
         </div>
       ) : (
         <div>
-          <p htmlFor="file">
-            Selecionar Foto:
+          <div className="image-outter-box">
             <input
+              hidden
               type="file"
               name="image"
               id="file"
               accept=".jpg, .jpeg, .png"
               onChange={(event) => onImageChange(event)}
             />
-            {image !== "" ? (
-              <img
-                width={"100px"}
-                height={"100px"}
-                src={`data:image;base64,${image}`}
-                alt="car_image"
-              />
-            ) : null}
-          </p>
-          <p>
-            Nome:
-            <input type="text" value={name} onChange={handleNameChange} />
-          </p>
-          <p>
-            Marca:
-            <input type="text" value={brand} onChange={handleBrandChange} />
-          </p>
-          <p>
-            Modelo:
-            <input type="text" value={model} onChange={handleModelChange} />
-          </p>
-          <p>
-            Ano:
-            <input type="text" value={year} onChange={handleYearChange} />
-          </p>
-          <p>
-            Quilometragem:
-            <input
-              type="text"
-              value={kilometers}
-              onChange={handleKilometersChange}
-            />
-          </p>
-          <p>
-            Valor:
-            <input type="text" value={amount} onChange={handleAmountChange} />
-          </p>
-          <button onClick={editCar}>Editar</button>
-          {errorMessage}
+            <label htmlFor="file" className="text-image-box">
+              {image !== "" ? (
+                <img
+                  max-width={"100%"}
+                  height={"300px"}
+                  src={`data:image;base64,${image}`}
+                  alt="car_image"
+                />
+              ) : (
+                "Selecionar Foto"
+              )}
+            </label>
+          </div>
+          <p>Nome:</p>
+          <input type="text" value={name} onChange={handleNameChange} />
+          <p>Marca:</p>
+          <input type="text" value={brand} onChange={handleBrandChange} />
+          <p>Modelo:</p>
+          <input type="text" value={model} onChange={handleModelChange} />
+          <p>Ano:</p>
+          <input
+            maxLength="9"
+            type="text"
+            value={year}
+            onChange={handleYearChange}
+          />
+          <p>Quilometragem:</p>
+          <input
+            type="text"
+            value={kilometers}
+            onChange={handleKilometersChange}
+          />
+          <p>Valor:</p>
+          <input type="text" value={amount} onChange={handleAmountChange} />
+          <div className="align-center">
+            <button className="button-layout" onClick={editCar}>
+              Editar
+            </button>
+          </div>
+          <p className="car-error-message">{errorMessage}</p>
         </div>
       )}
     </div>

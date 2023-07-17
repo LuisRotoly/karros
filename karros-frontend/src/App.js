@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -12,7 +13,7 @@ import CarPage from "./pages/carManage/CarPage";
 import Authentication from "./pages/Authentication";
 import EditCarPage from "./pages/carManage/EditCarPage";
 import CreateCarPage from "./pages/carManage/CreateCarPage";
-import ContactPage from "./pages/ContactPage";
+import ContactPage from "./pages/contact/ContactPage";
 
 function App() {
   return (

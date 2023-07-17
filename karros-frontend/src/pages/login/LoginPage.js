@@ -2,6 +2,7 @@ import { useState } from "react";
 import { loginRequest, createUserRequest } from "../../services/userServices";
 import { useNavigate } from "react-router-dom";
 import { validateRegexEmail, isEmpty } from "../../stringHelper";
+import "./login.css";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -79,44 +80,46 @@ function LoginPage() {
 
   return (
     <div>
-      <div>
-        <p>Já tem uma conta?</p>
-        <p>
-          E-mail:
+      <div className="login-block">
+        <div className="login-margin">
+          <p className="login-title">Já tem uma conta?</p>
+          <p className="login-label">E-mail</p>
           <input type="text" value={email} onChange={handleEmailChange} />
-        </p>
-        <p>
-          Senha:
+
+          <p className="login-label">Senha</p>
           <input
             type="password"
             value={password}
             onChange={handlePasswordChange}
           />
-        </p>
-        <button onClick={login}>Entrar</button>
-        <p>{loginErrorMessage}</p>
-      </div>
-      {/*vertical divider com ou no meio*/}
-      <div>
-        <p>Crie a sua conta</p>
-        <p>
-          Nome:
+          <div className="align-center">
+            <button className="login-button" onClick={login}>
+              Entrar
+            </button>
+          </div>
+          <p className="error-message">{loginErrorMessage}</p>
+        </div>
+        <div className="divider" />
+        <div className="login-margin">
+          <p className="login-title">Crie a sua conta</p>
+          <p className="login-label">Nome</p>
           <input type="text" value={name} onChange={handleNameChange} />
-        </p>
-        <p>
-          E-mail:
+
+          <p className="login-label">E-mail</p>
           <input type="text" value={newEmail} onChange={handleNewEmailChange} />
-        </p>
-        <p>
-          Senha:
+          <p className="login-label">Senha</p>
           <input
             type="password"
             value={newPassword}
             onChange={handleNewPasswordChange}
           />
-        </p>
-        <button onClick={createAccount}>Criar</button>
-        <p>{createErrorMessage}</p>
+          <div className="align-center">
+            <button className="login-button" onClick={createAccount}>
+              Criar
+            </button>
+          </div>
+          <p className="error-message">{createErrorMessage}</p>
+        </div>
       </div>
     </div>
   );

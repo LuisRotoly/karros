@@ -1,16 +1,18 @@
 .car-container {
   width: 15%;
-  height: 380px;
-  margin: 10px;
+  height: 390px;
+  margin: 20px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .car-image-size {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   height: 200px;
-  border: 1px solid red;
+  text-align: center;
+  overflow: hidden;
 }
 
 .title {
@@ -21,13 +23,14 @@
 
 .subtitle {
   margin-left: 10px;
-  margin-bottom: 10px;
-  font-size: 16px;
+  margin-right: 10px;
+  font-size: 12px;
   color: gray;
+  overflow: hidden;
+  height: 32px;
 }
 
 .amount {
-  margin: 10px;
   font-size: 40px;
   display: flex;
   justify-content: center;
@@ -39,4 +42,28 @@
   justify-content: space-between;
   margin: 10px;
   color: gray;
+}
+
+.overlay-button {
+  position: relative;
+  bottom: 10px;
+  left: 75px;
+}
+
+.button-contact {
+  background-color: red;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  height: 30px;
+  padding: 5px 8px 5px 8px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+}
+
+.button-contact:hover {
+  background-color: white;
+  color: red;
 }

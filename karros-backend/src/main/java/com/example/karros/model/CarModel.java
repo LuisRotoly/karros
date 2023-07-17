@@ -46,4 +46,10 @@ public class CarModel {
 
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name="is_deleted")
+    private Boolean isDeleted;
+
+    @Column(name="deleted_at")
+    private LocalDateTime deletedAt;
 }
