@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route element={<DefaultLayout />}>
           <Route path="*" element={<Navigate to="/" />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/:error?" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route element={<Authentication />}>

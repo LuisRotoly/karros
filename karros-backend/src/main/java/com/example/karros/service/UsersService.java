@@ -1,5 +1,7 @@
 package com.example.karros.service;
 
+import com.example.karros.DTO.UserDTO;
+import com.example.karros.authentication.TokenUtil;
 import com.example.karros.bodyRequestInput.users.CreateUserRequest;
 import com.example.karros.bodyRequestInput.users.LoginRequest;
 import com.example.karros.exception.ApiRequestException;
@@ -17,12 +19,17 @@ public class UsersService {
     @Autowired
     private UsersRepository usersRepository;
 
-    public UsersModel login(LoginRequest loginRequest) {
+    public UserDTO login(LoginRequest loginRequest) {
         UsersModel usersModel = usersRepository.login(loginRequest.getEmail(), loginRequest.getPassword());
         if(usersModel == null){
             throw new ApiRequestException("E-mail ou senha incorretos!");
         }
-        return usersModel;
+        if(usersModel.getRoleModel().getCode().equals(RoleModel.RoleEnum.ADMIN.code)){
+            String token = TokenUtil.encodeToken(usersModel.getEmail(),usersModel.getRoleModel().getCode());
+            usersRepository.changeUserToken(usersModel.getId(), token);
+            return new UserDTO(usersModel, token);
+        }
+        return new UserDTO(usersModel);
     }
 
     public UsersModel createUser(CreateUserRequest createUserRequest) {
